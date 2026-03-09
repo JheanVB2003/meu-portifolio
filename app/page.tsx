@@ -5,6 +5,7 @@ import { SkillIcon } from "@/components/SkillsIcon";
 import { HeroImage } from "@/components/HeroImage";
 import { Footer } from "@/components/Footer";
 
+
 export default function Home() {
   const meusProjetos = [
     {
@@ -183,9 +184,9 @@ export default function Home() {
             <div className="space-y-4">
               <h3 className="text-purple-400 font-mono text-xs uppercase tracking-[0.2em]">DevOps & Patterns</h3>
               <div className="grid grid-cols-1 gap-3">
-                <SkillIcon nome="Git / GitLab CI" nivel="Sólido" />
+                <SkillIcon nome="Git / GitLab CI" nivel="Prático" />
                 <SkillIcon nome="Docker" nivel="Prático" />
-                <SkillIcon nome="Clean Code / SOLID" nivel="Sólido" />
+                <SkillIcon nome="Clean Code / SOLID" nivel="Prático" />
                 <SkillIcon nome="Scrum / Kanban" nivel="Sólido" />
               </div>
             </div>

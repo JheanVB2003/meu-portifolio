@@ -1,27 +1,41 @@
-import { ReactNode } from "react";
+"use client";
+
+import { motion } from "framer-motion";
+import { IconType } from "react-icons";
 
 interface SkillProps {
   nome: string;
   nivel: string;
-  icone?: ReactNode;
 }
 
 export function SkillIcon({ nome, nivel }: SkillProps) {
   return (
-    <div className="group relative p-5 bg-gray-900/30 border border-gray-800 rounded-xl hover:border-cyan-500/40 transition-all duration-300">
-      <div className="flex justify-between items-start mb-2">
-        <h3 className="text-white font-bold text-sm">{nome}</h3>
+    <div className="group relative p-6 bg-gray-900/30 border border-gray-800 rounded-2xl hover:border-cyan-500/40 transition-all duration-500 overflow-hidden flex flex-col gap-4">
+      
+      {/* Brilho Interno (Aura) - O overflow-hidden do pai impede que vaze */}
+      <div className="absolute inset-0 bg-cyan-500/0 group-hover:bg-cyan-500/5 blur-3xl transition-all duration-500 pointer-events-none" />
+      
+      {/* Cabeçalho da Skill: Ícone + Nome */}
+      <div className="relative z-10 flex items-center justify-between">
+        <span className="text-[10px] font-bold uppercase tracking-widest text-cyan-400/60">
+          {nivel}
+        </span>
       </div>
-      <span className="text-[10px] font-bold uppercase tracking-widest text-cyan-400/60">
-        {nivel}
-      </span>
-      {/* Detalhe visual de progresso discreto */}
-      <div className="mt-3 h-1 w-full bg-gray-800 rounded-full overflow-hidden">
-        <div 
-          className={`h-full bg-cyan-500/50 transition-all duration-500 ${
-            nivel === "Sólido" ? "w-full" : nivel === "Prático" ? "w-2/3" : "w-1/3"
-          }`}
-        />
+
+      <div className="relative z-10">
+        <h3 className="text-white font-bold text-base tracking-wide mb-3">{nome}</h3>
+        
+        {/* Barra de progresso baseada no seu nível real */}
+        <div className="h-1.5 w-full bg-gray-800/50 rounded-full overflow-hidden">
+          <motion.div 
+            initial={{ width: 0 }}
+            whileInView={{ 
+              width: nivel === "Sólido" ? "100%" : nivel === "Prático" ? "66%" : "33%" 
+            }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            className="h-full bg-gradient-to-r from-cyan-600 to-cyan-400 group-hover:shadow-[0_0_12px_rgba(6,182,212,0.5)] transition-all duration-500"
+          />
+        </div>
       </div>
     </div>
   );
